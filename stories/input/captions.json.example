@@ -1,0 +1,34 @@
+{
+  "_doc": "Rename to captions.json. Keys are the photo filename (with or without extension). Any unspecified field falls back to the layout's default text.",
+
+  "01_cover.jpg": {
+    "title": "RC ŞANTİYE",
+    "subtitle": "Hayalini Kur · Kumandayı Tut · İnşa Et",
+    "handle": "@rcsantiye"
+  },
+
+  "02_alan.jpg": {
+    "label": "ŞANTİYE ALANI",
+    "caption": "Köprü, rampa ve gerçek kum yatağı",
+    "handle": "@rcsantiye"
+  },
+
+  "03_filo.jpg": {
+    "label": "FİLOMUZ",
+    "caption": "Ekskavatör · Damperli · Yükleyici",
+    "handle": "@rcsantiye"
+  },
+
+  "04_yakindan.jpg": {
+    "label": "DETAY",
+    "caption": "Profesyonel ölçek · gerçek hisli kumanda",
+    "handle": "@rcsantiye"
+  },
+
+  "05_cta.jpg": {
+    "kicker": "AİLECEK GEL",
+    "title": "KUMANDAYI KAP",
+    "sub": "BÜYÜK ŞANTİYEYİ SEN YÖNET",
+    "handle": "@rcsantiye"
+  }
+}
