@@ -2,3 +2,10 @@ node_modules/
 .env
 *.log
 service-account*.json
+
+# Story generator: keep source photos and final renders out of git.
+stories/input/*
+!stories/input/.gitkeep
+!stories/input/captions.json.example
+stories/output/*
+!stories/output/.gitkeep
