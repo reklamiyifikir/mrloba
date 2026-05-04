@@ -4,10 +4,19 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "report:ga4": "node scripts/ga4-traffic-report.mjs"
+    "report:ga4": "node scripts/ga4-traffic-report.mjs",
+    "outreach:auth": "node scripts/outreach/cli/auth.mjs",
+    "outreach:collect": "node scripts/outreach/cli/collect.mjs",
+    "outreach:draft": "node scripts/outreach/cli/draft.mjs",
+    "outreach:sync-sent": "node scripts/outreach/cli/sync-sent.mjs",
+    "outreach:follow": "node scripts/outreach/cli/follow.mjs",
+    "outreach:optout": "node scripts/outreach/cli/optout.mjs"
   },
   "dependencies": {
-    "@google-analytics/data": "^4.12.0"
+    "@google-analytics/data": "^4.12.0",
+    "@googlemaps/google-maps-services-js": "^3.4.0",
+    "dotenv": "^16.4.5",
+    "googleapis": "^144.0.0"
   },
   "engines": {
     "node": ">=18"
