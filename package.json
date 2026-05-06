@@ -4,10 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "report:ga4": "node scripts/ga4-traffic-report.mjs"
+    "report:ga4": "node scripts/ga4-traffic-report.mjs",
+    "analyze:gemini": "node scripts/gemini-analyze.mjs"
   },
   "dependencies": {
-    "@google-analytics/data": "^4.12.0"
+    "@google-analytics/data": "^4.12.0",
+    "@google/genai": "^1.52.0"
   },
   "engines": {
     "node": ">=18"

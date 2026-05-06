@@ -52,61 +52,78 @@ function printTable(rows) {
   console.table(rows);
 }
 
-async function main() {
-  console.log(`GA4 property ${PROPERTY_ID} — last ${DAYS} days\n`);
-
-  console.log("=== Overall totals ===");
+export async function gatherReport() {
   const totals = await runReport({
     dimensions: [],
     metrics: ["sessions", "activeUsers", "screenPageViews", "engagementRate", "averageSessionDuration"],
   });
-  printTotals(totals);
-
-  console.log("\n=== Daily trend ===");
   const daily = await runReport({
     dimensions: ["date"],
     metrics: ["sessions", "activeUsers", "screenPageViews"],
     orderBy: [{ dimension: { dimensionName: "date" } }],
   });
-  printTable(formatRows(daily));
-
-  console.log("\n=== Top traffic sources ===");
   const sources = await runReport({
     dimensions: ["sessionSource", "sessionMedium"],
     metrics: ["sessions", "activeUsers", "engagementRate"],
     orderBy: [{ metric: { metricName: "sessions" }, desc: true }],
     limit: 10,
   });
-  printTable(formatRows(sources));
-
-  console.log("\n=== Top countries ===");
   const countries = await runReport({
     dimensions: ["country"],
     metrics: ["sessions", "activeUsers"],
     orderBy: [{ metric: { metricName: "sessions" }, desc: true }],
     limit: 10,
   });
-  printTable(formatRows(countries));
-
-  console.log("\n=== Top pages ===");
   const pages = await runReport({
     dimensions: ["pagePath"],
     metrics: ["screenPageViews", "activeUsers", "averageSessionDuration"],
     orderBy: [{ metric: { metricName: "screenPageViews" }, desc: true }],
     limit: 10,
   });
-  printTable(formatRows(pages));
-
-  console.log("\n=== Device category ===");
   const devices = await runReport({
     dimensions: ["deviceCategory"],
     metrics: ["sessions", "activeUsers", "engagementRate"],
     orderBy: [{ metric: { metricName: "sessions" }, desc: true }],
   });
-  printTable(formatRows(devices));
+  return {
+    propertyId: PROPERTY_ID,
+    days: DAYS,
+    totals: { headers: (totals.metricHeaders ?? []).map((h) => h.name), values: (totals.totals?.[0]?.metricValues ?? []).map((v) => v.value) },
+    daily: formatRows(daily),
+    sources: formatRows(sources),
+    countries: formatRows(countries),
+    pages: formatRows(pages),
+    devices: formatRows(devices),
+  };
 }
 
-main().catch((err) => {
-  console.error("GA4 report failed:", err.message ?? err);
-  process.exit(1);
-});
+async function main() {
+  console.log(`GA4 property ${PROPERTY_ID} — last ${DAYS} days\n`);
+  const report = await gatherReport();
+
+  console.log("=== Overall totals ===");
+  console.log(`Totals: ${report.totals.headers.map((h, i) => `${h}=${report.totals.values[i] ?? "0"}`).join("  ")}`);
+
+  console.log("\n=== Daily trend ===");
+  printTable(report.daily);
+
+  console.log("\n=== Top traffic sources ===");
+  printTable(report.sources);
+
+  console.log("\n=== Top countries ===");
+  printTable(report.countries);
+
+  console.log("\n=== Top pages ===");
+  printTable(report.pages);
+
+  console.log("\n=== Device category ===");
+  printTable(report.devices);
+}
+
+const isMain = import.meta.url === `file://${process.argv[1]}`;
+if (isMain) {
+  main().catch((err) => {
+    console.error("GA4 report failed:", err.message ?? err);
+    process.exit(1);
+  });
+}
