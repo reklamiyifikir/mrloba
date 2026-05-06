@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "report:ga4": "node scripts/ga4-traffic-report.mjs",
-    "analyze:gemini": "node scripts/gemini-analyze.mjs"
+    "analyze:gemini": "node --env-file-if-exists=.env scripts/gemini-analyze.mjs",
+    "ask": "node --env-file-if-exists=.env scripts/gemini-ask.mjs"
   },
   "dependencies": {
     "@google-analytics/data": "^4.12.0",
