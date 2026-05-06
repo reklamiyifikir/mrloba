@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(npm run report:ga4)",
+      "Bash(npm install)",
+      "Bash(npm ci)",
+      "Bash(npm ls:*)",
+      "Bash(node scripts/*.mjs)",
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git show:*)",
+      "Bash(ls:*)",
+      "Bash(cat package.json)",
+      "Bash(cat package-lock.json)"
+    ],
+    "deny": [
+      "Read(./service-account*.json)",
+      "Read(./**/service-account*.json)",
+      "Read(./.env)",
+      "Read(./**/.env)",
+      "Read(./**/.env.*)"
+    ]
+  }
+}
