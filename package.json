@@ -6,7 +6,8 @@
   "scripts": {
     "report:ga4": "node scripts/ga4-traffic-report.mjs",
     "analyze:gemini": "node --env-file-if-exists=.env scripts/gemini-analyze.mjs",
-    "ask": "node --env-file-if-exists=.env scripts/gemini-ask.mjs"
+    "ask": "node --env-file-if-exists=.env scripts/gemini-ask.mjs",
+    "chat": "node --env-file-if-exists=.env scripts/gemini-chat.mjs"
   },
   "dependencies": {
     "@google-analytics/data": "^4.12.0",
