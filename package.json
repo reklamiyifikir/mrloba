@@ -1,0 +1,19 @@
+{
+  "name": "mrloba",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "report:ga4": "node scripts/ga4-traffic-report.mjs",
+    "analyze:gemini": "node --env-file-if-exists=.env scripts/gemini-analyze.mjs",
+    "ask": "node --env-file-if-exists=.env scripts/gemini-ask.mjs",
+    "chat": "node --env-file-if-exists=.env scripts/gemini-chat.mjs"
+  },
+  "dependencies": {
+    "@google-analytics/data": "^4.12.0",
+    "@google/genai": "^1.52.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
